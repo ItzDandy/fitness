@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+<div class="kontejner">
+    <h2>Fitness Tracker</h2>
+
+    <!-- Cíle -->
+    <section id="cile">
+      <h3>Cíle</h3>
+      <table id="cile-table">
+          <thead>
+              <tr>
+                  <th>Týdenní cíl (minuty cvičení)</th>
+                  <th>Pokrok (minuty)</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td><input type="number" id="weekly-goal" onchange="aktualizaceprograsu()" required></td>
+                  <td><span id="progress">0</span> z <span id="goal">0</span></td>
+              </tr>
+          </tbody>
+      </table>
+  </section>
+    </section>
+
+    <!-- Domovská Stránka -->
+    <section id="home">
+      <h3>Přehled aktuálního týdne</h3>
+      <div>
+          <button onclick="zmenitvikend(-1)">Předchozí týden</button>
+          <span id="current-week"></span>
+          <button onclick="zmenitvikend(1)">Další týden</button>
+      </div>
+      <table id="weekly-calendar">
+          <thead>
+              <tr>
+                  <th>Po</th>
+                  <th>Út</th>
+                  <th>St</th>
+                  <th>Čt</th>
+                  <th>Pá</th>
+                  <th>So</th>
+                  <th>Ne</th>
+              </tr>
+          </thead>
+          <tbody id="calendar-body" onclick="pridataktivitu(event)"></tbody>
+      </table>
+    <div id="sumar">
+      <p>Sumární informace:</p>
+      <!-- Celkový počet cvičení a strávený čas v týdnu -->
+      <p>Celkový počet cvičení: <span id="total-activities">0</span></p>
+      <p>Celkový čas: <span id="total-time">0</span> minut</p>
+    </div>
+  </section>
+
+    </section>
+
+    <!-- Záznam Aktivity -->
+    <section id="record-activity">
+      <h3>Záznam Aktivity</h3>
+      <form id="activity-form">
+          <label for="activity-type">Typ aktivity:</label>
+          <select id="activity-type" required>
+              <option value="běh">Běh</option>
+              <option value="jízda na kole">Jízda na kole</option>
+              <option value="plavání">Plavání</option>
+              <option value="posilování">Posilování</option>
+              <!-- Přidat další typy aktivity podle potřeby -->
+          </select>
+
+          <label for="activity-duration">Délka trvání (minuty):</label>
+          <input type="number" id="activity-duration" required>
+
+          <label for="activity-distance">Vzdálenost (volitelné):</label>
+          <input type="number" id="activity-distance">
+
+          <label for="activity-notes">Poznámky:</label>
+          <textarea id="activity-notes"></textarea>
+
+          <label for="activity-date">Datum aktivity:</label>
+          <input type="date" id="activity-date" required>
+
+          <button type="button" onclick="nacitaniaktivit()">Zaznamenat aktivitu</button>
+      </form>
+  </section>
+    </section>
+
+    <!-- Historie Aktivit -->
+    <section id="activity-history">
+      <h3>Historie Aktivit</h3>
+      <div>
+          <label for="filter-type">Filtr podle typu:</label>
+          <select id="filter-type" onchange="filtrhistorie()">
+              <option value="">Všechny typy</option>
+          </select>
+
+          <label for="filter-date">Filtr podle data:</label>
+          <input type="date" id="filter-date" onchange="filtrhistorie()">
+      </div>
+      <!-- Tabulka s historií aktivit -->
+      <table id="history-table">
+          <thead>
+              <tr>
+                  <th>Datum</th>
+                  <th>Typ aktivity</th>
+                  <th>Trvání (minuty)</th>
+                  <th>Vzdálenost</th>
+                  <th>Poznámky</th>
+              </tr>
+          </thead>
+          <tbody id="history-body"></tbody>
+      </table>
+    </section>
+</div>
+
+
+</body>
+</html>
